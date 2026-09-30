@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Game Artist & Concept Artist</title>
+  <style>
+    /* VARIABLES & CSS RESET */
+    :root {
+      --bg-color: #0d0e12;
+      --card-bg: #16181f;
+      --accent-color: #7b52ff;
+      --accent-hover: #9b77ff;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --border-color: #262936;
+      --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* HEADER & NAV */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      background: rgba(13, 14, 18, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active { color: var(--accent-color); }
+
+    .btn-cv {
+      background-color: var(--accent-color);
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .btn-cv:hover { background-color: var(--accent-hover); }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: 2.8rem; margin-bottom: 10px; }
+    .hero p { color: var(--text-muted); font-size: 1.1rem; }
+
+    /* FILTRES PAR CATEGORIE */
+    .filter-menu {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+    }
+
+    /* GALERIE PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      padding: 0 8%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-info {
+      padding: 15px;
+    }
+
+    .project-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
+    .project-info span { font-size: 0.8rem; color: var(--accent-color); text-transform: uppercase; }
+
+    /* SECTION JEU VIDEO SPECIALE */
+    .game-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .game-info h2 { font-size: 2rem; margin-bottom: 15px; }
+    .game-info p { color: var(--text-muted); margin-bottom: 20px; }
+
+    .download-btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .download-btn:hover { background: var(--accent-hover); }
+
+    .game-preview img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 0 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .game-section { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header>
+    <div class="logo">KLAYME / PORTFOLIO</div>
+    <nav>
+      <a href="#work" class="active">Travaux</a>
+      <a href="#game">Projet Jeu Vidéo</a>
+      <a href="CV_Klayme.pdf" target="_blank" class="btn-cv">Télécharger CV</a>
+    </nav>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <h1>Game & Concept Artist</h1>
+    <p>Spécialisé en Concept Art 2D, Sculpting Organique & Game Art Stylisé.</p>
+  </section>
+
+  <!-- FILTRES DE NAVIGATION -->
+  <div class="filter-menu" id="work">
+    <button class="filter-btn active" onclick="filterSelection('all')">Tout</button>
+    <button class="filter-btn" onclick="filterSelection('concept')">Concept Art</button>
+    <button class="filter-btn" onclick="filterSelection('illustration')">Illustration</button>
+    <button class="filter-btn" onclick="filterSelection('gameart')">3D & Low-Poly</button>
+  </div>
+
+  <!-- GRILLE DES PROJETS -->
+  <div class="portfolio-grid">
+    
+    <!-- Projets Concept Art -->
+    <div class="project-card concept">
+      <img src="votre-image-monolith.jpg" alt="The Monolith">
+      <div class="project-info">
+        <span>Concept Art</span>
+        <h3>The Monolith - Environment</h3>
+      </div>
+    </div>
+
+    <div class="project-card concept">
+      <img src="votre-image-andis.jpg" alt="Andis - Axoth Guard">
+      <div class="project-info">
+        <span>Concept Art</span>
+        <h3>Andis World-Building</h3>
+      </div>
+    </div>
+
+    <!-- Projets Illustration -->
+    <div class="project-card illustration">
+      <img src="votre-image-character-art.jpg" alt="Character Illustration">
+      <div class="project-info">
+        <span>Illustration</span>
+        <h3>Digital Painting Portrait</h3>
+      </div>
+    </div>
+
+    <!-- Projets Game Art / 3D -->
+    <div class="project-card gameart">
+      <img src="votre-image-b018.jpg" alt="B018 Model">
+      <div class="project-info">
+        <span>3D & Low-Poly</span>
+        <h3>B018 Character Model</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION JEU VIDEO PERSO -->
+  <section class="game-section" id="game">
+    <div class="game-info">
+      <h2>Projet Jeu Vidéo Indie</h2>
+      <p>Jeu vidéo développé en solo sur une période de 3 mois de A à Z : Direction artistique, modélisation 3D low-poly stylisée, UI design et intégration moteur.</p>
+      <a href="votre-jeu.zip" class="download-btn" download>🎮 Télécharger la Démo (Executable)</a>
+    </div>
+    <div class="game-preview">
+      <img src="screenshot-jeu.jpg" alt="Capture d'écran de mon jeu vidéo">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 KLAYME — Portfolio Game Art & Concept Art</p>
+  </footer>
+
+  <!-- SCRIPT FILTRAGE INTERACTIF -->
+  <script>
+    function filterSelection(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
